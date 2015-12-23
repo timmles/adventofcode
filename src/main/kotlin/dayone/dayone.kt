@@ -14,23 +14,20 @@ class DayOne {
     }
 
     fun findFloorNegOne(floorFunctions: String): Int {
-        return findFloorNegOne(floorFunctions, 0)
-    }
+        var floor: Int = 0;
 
-    tailrec private fun findFloorNegOne(input: String, index: Int, count: Int = 0): Int {
-        if (count == -1) {
-            return index
-        } else if (index == input.length) {
-            return 0
-        } else {
-            val upDown = when(input[index]) {
-                '(' -> 1
-                ')' -> -1
-                else -> 0
+        floorFunctions.forEachIndexed { index, char ->
+            when(char) {
+                '(' -> floor++
+                ')' -> floor--
             }
 
-            return findFloorNegOne(input, index + 1, count + upDown)
+            if (floor == -1) {
+                return index + 1
+            }
         }
+
+        return 0
     }
 }
 
