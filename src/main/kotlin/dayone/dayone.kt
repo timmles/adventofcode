@@ -1,6 +1,6 @@
 package dayone
 
-import java.io.File
+import common.Common
 
 class DayOne {
     fun walkFloors(floorFunctions: String): Int {
@@ -32,12 +32,7 @@ class DayOne {
 }
 
 fun main(args: Array<String>) {
-    val dayoneInput = getFile("dayone_input.txt")
+    val dayoneInput = Common.getFile("dayone_input.txt")
     dayoneInput.forEachLine { println(DayOne().walkFloors(it)) }
     dayoneInput.forEachLine { println(DayOne().findFloorNegOne(it)) }
-}
-
-private fun getFile(s: String): File {
-    val url: String = ClassLoader.getSystemClassLoader().getResource(s).file
-    return File(url)
 }

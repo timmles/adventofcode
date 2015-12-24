@@ -1,23 +1,37 @@
 package daytwo
 
-class DayTwo {
+import common.Common
 
+fun main(args: Array<String>) {
+    val dayoneInput = Common.getFile("daytwo_input.txt")
+    var count = 0
 
-}
-
-class PresentFactory {
-    fun createPresent(specs: String): Present {
-
-        val prezzie = Present(1,2,3)
-
-
-        println(prezzie.x)
-
-        return Present(1,2,3)
+    dayoneInput.forEachLine {
+        val prezzie = PresentFactory().createPresent(it)
+        count += prezzie.getSurface() + prezzie.getSlack()
     }
 
+    println(count)
+}
+class PresentFactory {
+    fun createPresent(specs: String): Present {
+        val values: List<String> = specs.split('x')
+
+        val prezzie = Present(
+                Integer.parseInt(values.get(0)),
+                Integer.parseInt(values.get(1)),
+                Integer.parseInt(values.get(2)))
+
+        return prezzie
+    }
 }
 
-class Present(val x: Int, val y: Int, val z: Int) {
+data class Present(val x: Int, val y: Int, val z: Int) {
+    fun getSurface(): Int {
+        return 2*(x*y + y*z + z*x)
+    }
 
+    fun getSlack(): Int {
+        return Math.min(x*y, Math.min(y*z, z*x))
+    }
 }
