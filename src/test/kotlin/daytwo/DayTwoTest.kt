@@ -28,6 +28,20 @@ class DayTwoTest {
         val slack = present.getSlack()
         assertEquals(6, slack)
     }
+
+    @Test
+    fun testRibbonBox() {
+        val present = Present(2, 3, 4)
+        val ribbon = present.getRibbonBox()
+        assertEquals(10, ribbon)
+    }
+
+    @Test
+    fun testRibbonBow() {
+        val present = Present(2, 3, 4)
+        val ribbon = present.getRibbonBow()
+        assertEquals(24, ribbon)
+    }
 }
 
 
