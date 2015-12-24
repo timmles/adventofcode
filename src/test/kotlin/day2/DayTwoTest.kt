@@ -1,4 +1,4 @@
-package daytwo
+package day2
 
 import org.junit.Assert.*
 import org.junit.Test
