@@ -16,6 +16,7 @@ fun main(args: Array<String>) {
     println("wrapping: " + countWrapping)
     println("ribbon: " + countRibbon)
 }
+
 class PresentFactory {
     fun createPresent(specs: String): Present {
         val values: List<String> = specs.split('x')
