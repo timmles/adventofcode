@@ -1,8 +1,19 @@
 package day7
 
+import common.Common
 import java.util.*
 
 fun main(args: Array<String>) {
+    val daySeveInput = Common.getFile("day7_input.txt")
+    val circuit = Circuit()
+
+    daySeveInput.forEachLine {
+        circuit.addNode(it)
+    }
+
+    circuit.runCircuit()
+
+    println(circuit.known["lx"])
 
 }
 
@@ -85,14 +96,19 @@ abstract class DualInputNode(input: String, override var output: String) : Node(
     }
 
     override fun process(known: HashMap<String, Int>):Int? {
-        val one = known[firstSource]
+        var one = known[firstSource]
         var two = known[secondSource]
+
+        if (one == null) {
+            try {
+                one = firstSource.toInt()
+            } catch (nfe: NumberFormatException) {}
+        }
 
         if (two == null) {
             try {
                 two = secondSource.toInt()
             } catch (nfe: NumberFormatException) {}
-
         }
 
         if (one != null && two != null) {
