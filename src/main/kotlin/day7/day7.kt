@@ -60,7 +60,7 @@ class NotNode(input: String, override var output: String) : Node() {
     var source: String
 
     init  {
-        source = input.removePrefix("NOT")
+        source = input.removePrefix("NOT").trim()
     }
 
     override fun process(known: HashMap<String, Int>):Int? {
@@ -86,7 +86,14 @@ abstract class DualInputNode(input: String, override var output: String) : Node(
 
     override fun process(known: HashMap<String, Int>):Int? {
         val one = known[firstSource]
-        val two = known[secondSource]
+        var two = known[secondSource]
+
+        if (two == null) {
+            try {
+                two = secondSource.toInt()
+            } catch (nfe: NumberFormatException) {}
+
+        }
 
         if (one != null && two != null) {
             return math(one, two)
