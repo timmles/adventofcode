@@ -2,16 +2,30 @@ package day11
 
 fun main(args: Array<String>) {
     val passwordGenerator = PasswordGenerator()
-    var password = "hepxcrrq"
-
+    var password = "hepxxyzz"
+    //    var password = "hepxxyzz"
     do {
         password = passwordGenerator.incrementPassword(password)
-    } while(passwordGenerator.validate(password))
+    } while(! passwordGenerator.validate(password))
 
     println(password)
 }
 
 class PasswordGenerator {
+
+    val alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+    fun incrementPasswordViaHack(current: String): String {
+        val last = current.last()
+        val indexInAlphabet = alphabet.indexOf(last)
+        val prefixPass = current.dropLast(1)
+
+        if (alphabet.last() == last) {
+            return incrementPassword(prefixPass) + alphabet.first()
+        } else {
+            return prefixPass + alphabet[indexInAlphabet + 1]
+        }
+    }
 
     fun incrementPassword(current: String): String {
         return incrementPassword(current, 1)
@@ -70,15 +84,11 @@ object BaseConversion {
     fun toNum(char: Char): Long {
         val num = char.toLong() - 'a'.toLong()
 
-        println("char $char equals $num")
         return num
     }
 
     fun toChar(long: Long): Char {
         val l = long + 'a'.toLong()
-
-        println("char ${l.toChar()} equals $long")
-
         return l.toChar()
     }
 }
