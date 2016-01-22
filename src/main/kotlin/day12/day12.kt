@@ -23,17 +23,18 @@ class Abacus (json: String) {
     }
 
     fun parse(): Int {
-        traverse(reader.readObject().entries)
+        reader.readObject().entries.forEach {
+            traverse(it.value)
+        }
 
         return count
     }
 
-    fun traverse(entries: MutableSet<MutableMap.MutableEntry<String, JsonValue>>) {
-        entries.forEach {
-            when(it.value) {
-                is JsonObject-> traverse((it.value as JsonObject).entries)
-                is JsonNumber -> count += (it.value as JsonNumber).intValue()
-            }
+    fun traverse(value: JsonValue) {
+        when(value) {
+            is JsonObject -> value.entries.forEach { traverse(it.value) }
+            is JsonArray -> value.forEach { traverse(it) }
+            is JsonNumber -> count += value.intValue()
         }
     }
 }
