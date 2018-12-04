@@ -24,6 +24,7 @@ dependencies {
     compile 'javax.json:javax.json-api:1.0'
     compile 'org.glassfish:javax.json:1.0.4'
     compile 'com.google.code.gson:gson:2.5'
+    compile group: 'com.google.guava', name: 'guava', version: '27.0.1-jre'
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
 }
 
