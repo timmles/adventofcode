@@ -16,7 +16,7 @@ class DayTwoP1Test {
 
     @Test
     fun checksumActual() {
-        val listOf = Common.getFile("year2018/dayTwo.txt").readLines()
+        val listOf = Common.getFile("year2018/day2.txt").readLines()
 
         val destruct = DayTwoP1().checksum(listOf)
         print(destruct)
@@ -35,7 +35,7 @@ class DayTwoP2Test {
 
     @Test
     fun findActual() {
-        val listOf = Common.getFile("year2018/dayTwo.txt").readLines()
+        val listOf = Common.getFile("year2018/day2.txt").readLines()
 
         val find = DayTwoP2().find(listOf)
         assertEquals("lujnogabetpmsydyfcovzixaw", find, "findActual : find : fail")
