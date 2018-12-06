@@ -48,7 +48,7 @@ class DayFour {
         return guards.maxBy { it.value }!!.key
     }
 
-    fun findSleepiestMinute(sleeps: List<Sleep>): Int {
+    fun findSleepiestMinute(sleeps: List<Sleep>): Map.Entry<Int, Int> {
         val minutes: MutableMap<Int, Int> = mutableMapOf<Int, Int>()
 
         sleeps.forEach {
@@ -58,14 +58,26 @@ class DayFour {
             }
         }
 
-        return minutes.maxBy { it.value }!!.key
+        return minutes.maxBy { it.value }!!
     }
 
-    fun findSleepiestGuardMinute(sleeps: List<Sleep>): Int {
+    fun findSleepiestGuardMinuteByGuard(sleeps: List<Sleep>): Int {
         val sleepiestGuard = findSleepiestGuard(sleeps)
         val sleepiestMinute = findSleepiestMinute(sleeps.filter { it.id == sleepiestGuard })
 
-        return sleepiestMinute * sleepiestGuard
+        return sleepiestMinute.key * sleepiestGuard
+    }
+
+    fun findSleepiestGuardMinuteByMinute(sleeps: List<Sleep>): Int {
+
+        val guardIds = sleeps.map { it.id }.distinct()
+
+        val maxBy = guardIds.map { guardId ->
+            val sleepiestMinute = findSleepiestMinute(sleeps.filter { it.id == guardId })
+            Triple<Int, Int, Int>(guardId, sleepiestMinute.key, sleepiestMinute.value)
+        }.maxBy { it.third }!!
+
+        return maxBy.first * maxBy.second
     }
 
 
