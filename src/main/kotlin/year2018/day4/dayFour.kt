@@ -3,7 +3,10 @@ package year2018.day4
 import year2018.day3.Claim
 
 class DayFour {
-    fun createSleepShift(sleepInput: List<String>): List<Sleep> {
+    fun createSleepShift(sleepInputRaw: List<String>): List<Sleep> {
+        val regexTime = Regex("\\[(.*)\\]")
+        val sleepInput = sleepInputRaw.sortedBy { regexTime.find(it)!!.groupValues[1] }
+
         val regexGuard = Regex("Guard #(\\d*)")
         val regexAsleep = Regex(":(\\d\\d)] falls asleep")
         val regexWake = Regex(":(\\d\\d)] wakes up")
@@ -55,7 +58,14 @@ class DayFour {
             }
         }
 
-        return minutes.maxBy { it.value }!!.value
+        return minutes.maxBy { it.value }!!.key
+    }
+
+    fun findSleepiestGuardMinute(sleeps: List<Sleep>): Int {
+        val sleepiestGuard = findSleepiestGuard(sleeps)
+        val sleepiestMinute = findSleepiestMinute(sleeps.filter { it.id == sleepiestGuard })
+
+        return sleepiestMinute * sleepiestGuard
     }
 
 
