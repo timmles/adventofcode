@@ -55,7 +55,7 @@ class DaySixTest {
 
         val safeArea = DaySixSafety(coordsInput).calculateSafeRegion(10000)
 
-        kotlin.test.assertEquals(4754, safeArea)
+        kotlin.test.assertEquals(42344, safeArea)
     }
 
     private fun printGrid(coordsArea: Table<Int, Int, Int>, coords: List<Coord>, alt:Int) {
