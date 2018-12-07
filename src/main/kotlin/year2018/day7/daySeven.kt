@@ -31,8 +31,45 @@ class DaySeven(instructionsInput: List<String>) {
         return pickupNext(instructions.toMutableList(), "")
     }
 
-    fun orderConcurrent(workers: Int, jobOffset: Int): Int {
-        return order().count()
+    fun order(workersCount: Int, jobOffset: Int): Int {
+        var timer = -1
+        var completed = ""
+        var workers: List<Pair<String, Int>?> = List(workersCount) { null }
+
+        do {
+            timer++
+
+            workers = workers.map {
+                var current = it
+
+                if (current != null) {
+                    current = current.copy(current.first, current.second - 1)
+
+                    if (current.second == 0) {
+                        completed += current.first
+                        current = null
+                    }
+                }
+
+                if (current == null) {
+                    val nextInstructions = instructions.filter {
+                        it.prereq.isEmpty() || stringContainsAll(completed, it.prereq)
+                    }.sortedBy { it.id }
+
+                    if (nextInstructions.isNotEmpty()) {
+                        val scheduleInstruction = nextInstructions.first()
+                        instructions.remove(scheduleInstruction)
+                        current = Pair(scheduleInstruction.id, jobOffset + (scheduleInstruction.id.first().toInt() - 'A'.toInt() + 1))
+                    }
+                }
+
+                current
+            }
+
+        } while (workers.filter { it != null }.isNotEmpty())
+
+
+        return timer
     }
 
     private fun pickupNext(instructions: MutableList<Instruction>, list:String): String {

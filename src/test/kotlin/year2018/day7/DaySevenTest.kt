@@ -45,7 +45,7 @@ class DaySevenTest {
                 "Step F must be finished before step E can begin."
         )
 
-        val instructionOrder = DaySeven(instructions).orderConcurrent(2, 0)
+        val instructionOrder = DaySeven(instructions).order(2, 0)
         kotlin.test.assertEquals(15, instructionOrder)
     }
 
@@ -53,7 +53,7 @@ class DaySevenTest {
     fun findConcurrentInstrcutionsActual() {
         val instructions = Common.getFile("year2018/day7.txt").readLines()
 
-        val instructionOrder = DaySeven(instructions).orderConcurrent(5, 60)
-        kotlin.test.assertEquals(15, instructionOrder)
+        val instructionOrder = DaySeven(instructions).order(5, 60)
+        kotlin.test.assertEquals(1050, instructionOrder)
     }
 }

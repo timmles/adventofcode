@@ -42,7 +42,7 @@ class DayFiveTest {
     fun reactActual() {
         val claimsInput = Common.getFile("year2018/day5.txt").readLines()
         val result = dayFile.react(claimsInput[0])
-        kotlin.test.assertEquals(45, result.count())
+        kotlin.test.assertEquals(11152, result.count())
     }
 
     @Test
@@ -84,7 +84,7 @@ class DayFiveTest {
             Pair(it.first, dayFile.react(replace).count())
         }
 
-        kotlin.test.assertEquals(45, map.minBy { it.second }!!.second)
+        kotlin.test.assertEquals(6136, map.minBy { it.second }!!.second)
     }
 
 }
