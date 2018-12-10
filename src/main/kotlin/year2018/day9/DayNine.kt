@@ -15,9 +15,10 @@ class DayNine {
             if (currentCount % 23 == 0) {
                 val back = currentMarble.back(7)
                 currentMarble = back.forward(1)
+                back.remove()
 
                 val currentScore = playerScore.getOrPut(player, { 0 })
-                playerScore.put(player, currentScore + currentCount + back.remove().value)
+                playerScore.put(player, currentScore + currentCount + back.value)
 
             } else {
                 currentMarble = currentMarble.forward(1).insertAfter(Marble(currentCount))
@@ -104,13 +105,11 @@ class Marble(val value: Int) {
         }
     }
 
-    fun remove(): Marble {
+    fun remove() {
         previous.next = next
         next.previous = previous
 
         next = this
         previous = this
-
-        return this
     }
 }
