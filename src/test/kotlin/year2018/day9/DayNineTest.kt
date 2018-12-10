@@ -19,7 +19,7 @@ class DayNineTest {
         kotlin.test.assertEquals(54718, DayNine().play(21, 6111))
         kotlin.test.assertEquals(37305, DayNine().play(30, 5807))
         kotlin.test.assertEquals(373597, DayNine().play(486, 70833))
-//        kotlin.test.assertEquals(2954067253, DayNine().play(486, 7083300))
+        kotlin.test.assertEquals(2954067253, DayNine().play(486, 7083300))
     }
 
 //    @Test

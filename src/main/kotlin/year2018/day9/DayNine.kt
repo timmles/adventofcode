@@ -1,50 +1,53 @@
 package year2018.day9
 
+import kotlin.math.max
+
 class DayNine {
 
-    val marbles = mutableListOf<Int>(0)
-    var currentMarbleIndex = 0
-    var currentCount = 1
-    var player = 1
-    val playerScore = mutableMapOf<Int, Long>()
-
     fun play(playerCount: Int, lastMarble: Int): Long {
-        printBoard()
+        var currentMarble = Marble(0)
+        var player = 1
+        val playerScore = mutableMapOf<Int, Long>()
 
-        for (i in 0.until(lastMarble)) {
+        printBoard(player, currentMarble)
+
+        for (currentCount in 1..lastMarble) {
             if (currentCount % 23 == 0) {
-
-                currentMarbleIndex = shift(currentMarbleIndex, -7, marbles.size)
+                val back = currentMarble.back(7)
+                currentMarble = back.forward(1)
 
                 val currentScore = playerScore.getOrPut(player, { 0 })
-                playerScore.put(player, currentScore + currentCount + marbles.removeAt(currentMarbleIndex))
+                playerScore.put(player, currentScore + currentCount + back.remove().value)
 
             } else {
-                currentMarbleIndex = shift(currentMarbleIndex, 2, marbles.size)
-                marbles.add(currentMarbleIndex, currentCount)
+                currentMarble = currentMarble.forward(1).insertAfter(Marble(currentCount))
             }
 
-            printBoard()
-            currentCount++
+            printBoard(player, currentMarble)
             player = shift(player, 1, playerCount)
         }
 
-        return playerScore.maxBy { it.value }!!.value
+        return playerScore.values.max()!!
     }
 
-    private fun printBoard() {
+    private fun printBoard(player: Int, inputMarble: Marble) {
         if (false) {
+            var currentMarble = inputMarble
             print("[$player] ")
 
-            marbles.forEachIndexed { index, it ->
-                if (index == currentMarbleIndex)
-                    print("($it)")
-                else {
-                    print(" $it ")
-                }
+            //find 0
+            val firstValue = currentMarble.value
+            var output = "(${firstValue})"
+            currentMarble = currentMarble.forward(1)
+
+            while (currentMarble.value != firstValue) {
+                output += " ${currentMarble.value} "
+                currentMarble = currentMarble.forward(1)
             }
 
-            println()
+            val split = max(output.indexOf(" 0 "), output.indexOf("(0)"))
+
+            println(output.substring(split) + output.substring(0, split))
         }
     }
 
@@ -60,5 +63,54 @@ class DayNine {
         }
 
         return newValue
+    }
+}
+
+class Marble(val value: Int) {
+    private var previous = this
+    private var next = this
+
+    fun insertAfter(node: Marble): Marble {
+        node.previous = this
+        node.next = this.next
+
+        this.next.previous = node
+        this.next = node
+
+        return node
+    }
+
+    fun insertBefore(node: Marble) {
+        node.next = this
+        node.previous = this.previous
+
+        this.previous.next = node
+        this.previous = node
+    }
+
+    fun back(steps: Int): Marble {
+        if (steps == 0) {
+            return this
+        } else {
+            return previous.back(steps - 1)
+        }
+    }
+
+    fun forward(steps: Int): Marble {
+        if (steps == 0) {
+            return this
+        } else {
+            return next.forward(steps - 1)
+        }
+    }
+
+    fun remove(): Marble {
+        previous.next = next
+        next.previous = previous
+
+        next = this
+        previous = this
+
+        return this
     }
 }
