@@ -7,11 +7,6 @@ import year2018.day9.DayNine
 class DayNineTest {
     @Test
     fun findXXX1() {
-        val map = "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2"
-                .split(" ")
-                .map { it.toInt() }
-
-
         kotlin.test.assertEquals(32, DayNine().play(9, 25))
         kotlin.test.assertEquals(8317, DayNine().play(10, 1618))
         kotlin.test.assertEquals(146373, DayNine().play(13, 7999))
