@@ -1,8 +1,7 @@
-package year2018.day6
+package year2018.day8
 
 import common.Common
 import org.junit.Test
-import year2018.day8.DayEight
 
 class DayEightTest {
     @Test
@@ -42,6 +41,6 @@ class DayEightTest {
                 .split(" ")
                 .map { it.toInt() }
         val metadata = DayEight(map).nodeValue()
-        kotlin.test.assertEquals(138, metadata)
+        kotlin.test.assertEquals(17206, metadata)
     }
 }

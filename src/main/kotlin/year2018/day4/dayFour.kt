@@ -1,7 +1,5 @@
 package year2018.day4
 
-import year2018.day3.Claim
-
 class DayFour {
     fun createSleepShift(sleepInputRaw: List<String>): List<Sleep> {
         val regexTime = Regex("\\[(.*)\\]")

@@ -3,9 +3,6 @@ package year2018.day6
 import com.google.common.collect.Table
 import common.Common
 import org.junit.Test
-import year2018.day5.Coord
-import year2018.day5.DaySixDanger
-import year2018.day5.DaySixSafety
 
 class DaySixTest {
     @Test

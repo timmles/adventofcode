@@ -1,4 +1,4 @@
-package year2018.day5
+package year2018.day7
 
 class DaySeven(instructionsInput: List<String>) {
     val instructions:MutableList<Instruction>

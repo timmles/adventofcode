@@ -1,6 +1,5 @@
 package year2018.day6
 
-import common.Common
 import org.junit.Test
 import year2018.day9.DayNine
 

@@ -1,4 +1,4 @@
-package year2018.day9
+package year2018.day10
 
 import kotlin.math.abs
 

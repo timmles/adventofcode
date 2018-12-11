@@ -1,4 +1,4 @@
-package year2018.day5
+package year2018.day6
 
 import com.google.common.collect.HashBasedTable
 import com.google.common.collect.Table

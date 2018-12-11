@@ -1,7 +1,6 @@
 package year2018.day5
 
 import common.Common
-import org.junit.Assert.*
 import org.junit.Test
 
 class DayFiveTest {

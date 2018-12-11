@@ -1,7 +1,5 @@
 package year2018.day8
 
-import kotlin.math.sign
-
 class DayEight(licenceInput: List<Int>) {
 
     val tree: LicenceNode

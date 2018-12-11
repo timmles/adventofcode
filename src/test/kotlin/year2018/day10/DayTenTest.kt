@@ -2,7 +2,6 @@ package year2018.day10
 
 import common.Common
 import org.junit.Test
-import year2018.day9.DayTen
 
 class DayTenTest {
 

@@ -38,8 +38,7 @@ class DayOneTest {
 
     @Test
     fun testActual() {
-        val drift: MutableList<Int> = mutableListOf()
-        val file = Common.getFile("year2018/day1.txt").forEachLine { drift.add(it.toInt()) }
+        val drift = Common.getFile("year2018/day1.txt").readLines().map { it.toInt() }
 
         val resultantFrequency: Int = dayOne.drift(0, drift)
 
@@ -80,8 +79,7 @@ class DayOneTest {
 
     @Test
     fun testFindActual() {
-        val drift: MutableList<Int> = mutableListOf()
-        val file = Common.getFile("year2018/day1.txt").forEachLine { drift.add(it.toInt()) }
+        val drift = Common.getFile("year2018/day1.txt").readLines().map { it.toInt() }
 
         val resultantFrequency: Int = dayOne.findFirstRepeatedFrequency(0, drift)
 

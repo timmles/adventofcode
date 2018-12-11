@@ -1,12 +1,7 @@
-package year2018.day6
+package year2018.day7
 
-import com.google.common.collect.Table
 import common.Common
 import org.junit.Test
-import year2018.day5.Coord
-import year2018.day5.DaySeven
-import year2018.day5.DaySixDanger
-import year2018.day5.DaySixSafety
 
 class DaySevenTest {
     @Test

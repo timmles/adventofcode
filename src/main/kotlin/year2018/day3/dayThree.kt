@@ -1,9 +1,6 @@
 package year2018.day3
 
-import com.google.common.collect.ArrayTable
 import com.google.common.collect.HashBasedTable
-import kotlin.math.abs
-import kotlin.math.max
 
 class DayThree {
 
