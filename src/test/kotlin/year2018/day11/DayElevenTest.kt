@@ -22,7 +22,6 @@ class DayElevenTest {
 
     @Test
     fun powerGridVariable() {
-
         kotlin.test.assertEquals( Point(90,269,113,16), DayEleven(18).searchLargestVariable())
         kotlin.test.assertEquals( Point(232,251,119,12), DayEleven(42).searchLargestVariable())
         kotlin.test.assertEquals( Point(231,108,171,14), DayEleven(1955).searchLargestVariable())

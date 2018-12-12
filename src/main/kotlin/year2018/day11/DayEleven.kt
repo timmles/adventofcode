@@ -1,9 +1,6 @@
 package year2018.day11
 
 import com.google.common.collect.HashBasedTable
-import com.google.common.collect.Table
-import kotlin.math.max
-import kotlin.math.min
 
 class DayEleven(val serialNumber: Int) {
 
