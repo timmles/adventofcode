@@ -1,16 +1,10 @@
 package year2018.day12
 
 import common.Common
+import org.junit.Ignore
 import org.junit.Test
 
 class DayTwelveTest {
-//    @Test
-//    fun testToInt() {
-//        val dayTwelve = DayTwelve("...##....#####...#######....#.#..##.", listOf())
-//
-//        kotlin.test.assertEquals(325, dayTwelve.toInt())
-//    }
-
     @Test
     fun growPlants() {
         val initialState = "#..#.#..##......###...###..........."
@@ -31,10 +25,7 @@ class DayTwelveTest {
                 "####. => #"
         )
 
-        val dayTwelve = DayTwelve(initialState, instructions)
-        dayTwelve.runGenerations(20)
-
-        kotlin.test.assertEquals(325, dayTwelve.toInt())
+        kotlin.test.assertEquals(325, DayTwelve(initialState, instructions).runGenerations(20))
     }
 
     @Test
@@ -42,10 +33,7 @@ class DayTwelveTest {
         val initialState = "#........#.#.#...###..###..###.#..#....###.###.#.#...####..##..##.#####..##...#.#.....#...###.#.####"
         val instructions = Common.getFile("year2018/day12.txt").readLines()
 
-        val dayTwelve = DayTwelve(initialState, instructions)
-        dayTwelve.runGenerations(20)
-
-        kotlin.test.assertEquals(3217, dayTwelve.toInt())
+        kotlin.test.assertEquals(3217, DayTwelve(initialState, instructions).runGenerations(20))
     }
 
     @Test
@@ -53,10 +41,7 @@ class DayTwelveTest {
         val initialState = "#........#.#.#...###..###..###.#..#....###.###.#.#...####..##..##.#####..##...#.#.....#...###.#.####"
         val instructions = Common.getFile("year2018/day12.txt").readLines()
 
-        val dayTwelve = DayTwelve(initialState, instructions)
-        dayTwelve.runGenerations(50_000_000_000L)
-
-        kotlin.test.assertEquals(3217, dayTwelve.toInt())
+        kotlin.test.assertEquals(4_000_000_000_866, DayTwelve(initialState, instructions).runGenerations(50_000_000_000L))
     }
 }
 
