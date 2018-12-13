@@ -64,7 +64,6 @@ class DayThirteen(trackInput: List<String>) {
         else return emptyList()
     }
 
-
     fun move() {
         carts.sortedWith(compareBy({ it.x }, { it.y }))
                 .forEach {
@@ -94,14 +93,14 @@ class DayThirteen(trackInput: List<String>) {
                             it.intersection()
                         }
 
-                        val findCollision = findCollision(it)
-                        if (findCollision.isNotEmpty()) {
+                        val listCollision = findCollision(it)
+                        if (listCollision.isNotEmpty()) {
                             if (status.firstCollision == null) {
-                                val findCollision = findCollision[0]
-                                status.firstCollision = Pair(findCollision.x, findCollision.y)
+                                val collision = listCollision[0]
+                                status.firstCollision = Pair(collision.x, collision.y)
                             }
 
-                            findCollision.forEach { it.alive = false }
+                            listCollision.forEach { it.alive = false }
                         }
                     }
                 }
@@ -121,7 +120,6 @@ class DayThirteen(trackInput: List<String>) {
             println()
         }
     }
-
 }
 
 data class Cart(
@@ -139,8 +137,6 @@ data class Cart(
             2 -> {intersections = 3; direction.turnRight()}
             else -> throw Error("wat")
         }
-
-//        intersections++
     }
 
     fun sameLocation(it: Cart): Boolean {
