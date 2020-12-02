@@ -1,14 +1,32 @@
 package year2020.day2
 
-class SledPasswordDatabase(input: List<String>) {
-  var database: List<SledPassword> = input.map { SledPassword(it) }
+abstract class PasswordDatabase(input: List<String>) {
+  var database: List<Password> = input.map { constructType(it) }
+
+  abstract fun constructType(s: String): Password
 
   fun countValid(): Int {
     return database.filter { it.valid() }.count()
   }
 }
 
-class SledPassword(s: String) {
+class SledPasswordDatabase(input: List<String>) : PasswordDatabase(input) {
+  override fun constructType(s: String): Password {
+    return SledPassword(s)
+  }
+}
+
+class TobogganPasswordDatabase(input: List<String>) : PasswordDatabase(input) {
+  override fun constructType(s: String): Password {
+    return TobogganPassword(s)
+  }
+}
+
+interface Password {
+  fun valid(): Boolean
+}
+
+class SledPassword(s: String) : Password {
   val intRange: IntRange
   val passwordChar: Char
   val password: String
@@ -24,21 +42,13 @@ class SledPassword(s: String) {
     password = split[2]
   }
 
-  fun valid(): Boolean {
+  override fun valid(): Boolean {
     return intRange.contains(password.count { it == passwordChar })
   }
 
 }
 
-class TobogganPasswordDatabase(input: List<String>) {
-  var database: List<TobogganPassword> = input.map { TobogganPassword(it) }
-
-  fun countValid(): Int {
-    return database.filter { it.valid() }.count()
-  }
-}
-
-class TobogganPassword(s: String) {
+class TobogganPassword(s: String) : Password {
   val charOne: Char
   val charTwo: Char
   val passwordPolicy: Char
@@ -50,13 +60,13 @@ class TobogganPassword(s: String) {
     val first = rangeSplit[0].toInt()
     val second = rangeSplit[1].toInt()
 
-    charOne = split[2][first-1]
-    charTwo = split[2][second-1]
+    charOne = split[2][first - 1]
+    charTwo = split[2][second - 1]
 
     passwordPolicy = split[1][0]
   }
 
-  fun valid(): Boolean {
+  override fun valid(): Boolean {
     return (charOne == passwordPolicy).xor(charTwo == passwordPolicy)
   }
 
