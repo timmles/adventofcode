@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 class ListCounterTest {
     @Test
     fun testCountCode() {
-        val dayEightTestInput = Common.getFile("day8_testinput.txt")
+        val dayEightTestInput = Common.getFile("year2015/day8_testinput.txt")
 
         println(StringEscapeUtils.unescapeJava("\\u0027"))
 
