@@ -16,7 +16,7 @@ internal class DayOneKtTest {
       675,
       1456)
 
-    assertEquals(224436, findAndMultiplyPairs(inputs), "findPair example : fail")
+    assertEquals(514579, findAndMultiplyPairs(inputs), "findPair example : fail")
   }
 
   @Test
