@@ -23,13 +23,13 @@ internal class DayOneTest {
 
   @Test
   fun sumQ1() {
-    val sumByDouble = Common.getFile("year2019/day1/q1.txt").readLines().sumByDouble { calculateFuel(it.toLong()).toDouble() }
+    val sumByDouble = Common.getFile("year2019/day1.txt").readLines().sumByDouble { calculateFuel(it.toLong()).toDouble() }
     assertEquals(3265923.0, sumByDouble, "calculateMass12 : calculate : fail")
   }
 
   @Test
   fun sumQ2() {
-    val sumByDouble = Common.getFile("year2019/day1/q1.txt").readLines().sumByDouble { calculateFuelFuel(it.toLong()).toDouble() }
+    val sumByDouble = Common.getFile("year2019/day1.txt").readLines().sumByDouble { calculateFuelFuel(it.toLong()).toDouble() }
     assertEquals(4896020.0, sumByDouble, "calculateMass12 : calculate : fail")
   }
 

@@ -45,7 +45,7 @@ class LightGridTest {
   @Test
   fun question1() {
     val grid = LightGrid()
-    Common.getFile("year2015/day6_input.txt").readLines().forEach {
+    Common.getFile("year2015/day6.txt").readLines().forEach {
       grid.configureLightsQ1(grid.parseInstruction(it))
     }
 
@@ -55,7 +55,7 @@ class LightGridTest {
   @Test
   fun question2() {
     val grid = LightGrid()
-    Common.getFile("year2015/day6_input.txt").forEachLine {
+    Common.getFile("year2015/day6.txt").forEachLine {
       grid.configureLightsQ2(grid.parseInstruction(it))
     }
 

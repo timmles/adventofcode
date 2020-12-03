@@ -18,12 +18,12 @@ class DayFiveKtTest {
 
   @Test
   fun test() {
-    assertEquals(11933517, IntCode(Common.getFile("year2019/day5/q1.txt").readLines().first(), 1).output)
+    assertEquals(11933517, IntCode(Common.getFile("year2019/day5.txt").readLines().first(), 1).output)
   }
 
   @Test
   fun test2() {
-    assertEquals(10428568, IntCode(Common.getFile("year2019/day5/q1.txt").readLines().first(), 5).output)
+    assertEquals(10428568, IntCode(Common.getFile("year2019/day5.txt").readLines().first(), 5).output)
   }
 
   @Test

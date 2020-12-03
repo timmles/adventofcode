@@ -47,7 +47,6 @@ class DayFiveTest {
     @Test
     fun reactActualPt2() {
         val claimsInput = Common.getFile("year2018/day5.txt").readLines()
-        val result = dayFile.react(claimsInput[0])
 
         val listOf = listOf(
                 Pair("A", 0),

@@ -29,7 +29,7 @@ internal class WireTest {
 
   @Test
   fun q1() {
-    val readLines = Common.getFile("year2019/day3/q1.txt").readLines()
+    val readLines = Common.getFile("year2019/day3.txt").readLines()
     val wire1 = Wire(readLines[0])
     val wire2 = Wire(readLines[1])
     assertEquals(207, manhathan(wire1, wire2))
@@ -51,7 +51,7 @@ internal class WireTest {
 
   @Test
   fun q2() {
-    val readLines = Common.getFile("year2019/day3/q1.txt").readLines()
+    val readLines = Common.getFile("year2019/day3.txt").readLines()
     val wire1 = Wire(readLines[0])
     val wire2 = Wire(readLines[1])
     assertEquals(21196, delay(wire1, wire2))
