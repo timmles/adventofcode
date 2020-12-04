@@ -29,8 +29,8 @@ internal class Day4KtTest {
 
   @Test
   fun question1() {
-    val input = Common.getFile("year2020/day4.txt").readLines()
-    assertEquals(1, PassportScanner(input).validateNotNull())
+    val input = Common.getFile("day4.txt").readLines()
+    assertEquals(260, PassportScanner(input).validateNotNull())
   }
 
   @Test
@@ -76,8 +76,8 @@ internal class Day4KtTest {
 
   @Test
   fun question2() {
-    val input = Common.getFile("year2020/day4.txt").readLines()
-    assertEquals(1, PassportScanner(input).validateContents())
+    val input = Common.getFile("day4.txt").readLines()
+    assertEquals(153, PassportScanner(input).validateContents())
   }
 }
 

@@ -27,7 +27,7 @@ internal class DayThreeKtTest {
 
   @Test
   fun question1() {
-    val input = Common.getFile("year2020/day3.txt").readLines()
+    val input = Common.getFile("day3.txt").readLines()
     assertEquals(151, AdventMap(input).traverse(Pair(3, 1)))
   }
 
@@ -64,7 +64,7 @@ internal class DayThreeKtTest {
 
   @Test
   fun question2() {
-    val input = Common.getFile("year2020/day3.txt").readLines()
+    val input = Common.getFile("day3.txt").readLines()
     assertEquals(7540141059, AdventMap(input).traverseSearch(listOf(
       Pair(1, 1),
       Pair(3, 1),

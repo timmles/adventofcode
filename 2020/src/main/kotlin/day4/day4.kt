@@ -47,8 +47,6 @@ class PassportScanner(val input: List<String>) {
     }
 
     fun validateContents(): Boolean {
-      println(properties["hgt"])
-
       return isNotNullOrEmpty(properties["byr"]) &&
         (1920..2002).contains(properties["byr"]?.toInt()) &&
         isNotNullOrEmpty(properties["iyr"]) &&

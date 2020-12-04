@@ -34,14 +34,14 @@ internal class DayOneKtTest {
 
   @Test
   fun questionOne() {
-    val inputs = Common.getFile("year2020/day1.txt").readLines().map { it.toInt() }
+    val inputs = Common.getFile("day1.txt").readLines().map { it.toInt() }
 
     assertEquals(224436, findAndMultiplyPairs(inputs), "findPair example : fail")
   }
 
   @Test
   fun questionTwo() {
-    val inputs = Common.getFile("year2020/day1.txt").readLines().map { it.toInt() }
+    val inputs = Common.getFile("day1.txt").readLines().map { it.toInt() }
 
     assertEquals(303394260, findAndMultiplyTriples(inputs), "findPair example : fail")
   }

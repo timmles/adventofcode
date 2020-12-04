@@ -32,14 +32,14 @@ internal class DayTwoKtTest {
 
   @Test
   fun q1() {
-    val input = Common.getFile("year2020/day2.txt").readLines()
+    val input = Common.getFile("day2.txt").readLines()
 
     assertEquals(538, SledPasswordDatabase(input).countValid())
   }
 
   @Test
   fun q2() {
-    val input = Common.getFile("year2020/day2.txt").readLines()
+    val input = Common.getFile("day2.txt").readLines()
 
     assertEquals(489, TobogganPasswordDatabase(input).countValid())
   }
