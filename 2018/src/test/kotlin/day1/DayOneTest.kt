@@ -19,7 +19,7 @@ class DayOneTest {
 
         assertEquals(3, resultantFrequency, "testDrift0 : resultantFrequency : fail")
     }
-    
+
     @Test
     fun testDrift1() {
         val drift: List<Int> = listOf(1, 1, -2)
@@ -27,7 +27,7 @@ class DayOneTest {
 
         assertEquals(0, resultantFrequency, "testDrift1 : resultantFrequency : fail")
     }
-    
+
     @Test
     fun testDrift2() {
         val drift: List<Int> = listOf(-1, -2, -3)
@@ -38,7 +38,7 @@ class DayOneTest {
 
     @Test
     fun testActual() {
-        val drift = Common.getFile("year2018/day1.txt").readLines().map { it.toInt() }
+        val drift = Common.getFile("day1.txt").readLines().map { it.toInt() }
 
         val resultantFrequency: Int = dayOne.drift(0, drift)
 
@@ -79,7 +79,7 @@ class DayOneTest {
 
     @Test
     fun testFindActual() {
-        val drift = Common.getFile("year2018/day1.txt").readLines().map { it.toInt() }
+        val drift = Common.getFile("day1.txt").readLines().map { it.toInt() }
 
         val resultantFrequency: Int = dayOne.findFirstRepeatedFrequency(0, drift)
 

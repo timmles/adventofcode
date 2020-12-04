@@ -38,7 +38,7 @@ class DayFourTest {
 
     @Test
     fun guardAndSleepiestMinuteActual() {
-        val sleepInput = Common.getFile("year2018/day4.txt").readLines()
+        val sleepInput = Common.getFile("day4.txt").readLines()
         val sleeps = dayFour.createSleepShift(sleepInput)
 
         val findSleepiestGuardMinute = dayFour.findSleepiestGuardMinuteByGuard(sleeps)
@@ -78,7 +78,7 @@ class DayFourTest {
 
     @Test
     fun guardAndSleepiestMinuteByMinuteActual() {
-        val sleepInput = Common.getFile("year2018/day4.txt").readLines()
+        val sleepInput = Common.getFile("day4.txt").readLines()
         val sleeps = dayFour.createSleepShift(sleepInput)
 
         val findSleepiestGuardMinute = dayFour.findSleepiestGuardMinuteByMinute(sleeps)

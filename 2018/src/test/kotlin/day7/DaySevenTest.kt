@@ -22,7 +22,7 @@ class DaySevenTest {
 
     @Test
     fun findInstructionsActual() {
-        val instructions = Common.getFile("year2018/day7.txt").readLines()
+        val instructions = Common.getFile("day7.txt").readLines()
 
         val instructionOrder = DaySeven(instructions).order()
         kotlin.test.assertEquals("GJFMDHNBCIVTUWEQYALSPXZORK", instructionOrder)
@@ -46,7 +46,7 @@ class DaySevenTest {
 
     @Test
     fun findConcurrentInstrcutionsActual() {
-        val instructions = Common.getFile("year2018/day7.txt").readLines()
+        val instructions = Common.getFile("day7.txt").readLines()
 
         val instructionOrder = DaySeven(instructions).order(5, 60)
         kotlin.test.assertEquals(1050, instructionOrder)

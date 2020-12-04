@@ -37,7 +37,7 @@ class DayThirteenTest {
 
     @Test
     fun growPlantsActual() {
-        val track = Common.getFile("year2018/day13.txt").readLines()
+        val track = Common.getFile("day13.txt").readLines()
 
         val simulate = DayThirteen(track).simulate()
         kotlin.test.assertEquals(Pair(40,90), simulate.firstCollision)

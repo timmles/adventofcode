@@ -23,7 +23,7 @@ class DayThreeTest {
 
     @Test
     fun overlapAreaActual() {
-        val claimsInput = Common.getFile("year2018/day3.txt").readLines()
+        val claimsInput = Common.getFile("day3.txt").readLines()
 
         val claims = dayThree.convertImportToClaims(claimsInput)
         val totalAreaOverlap = dayThree.countOverlap(claims)
@@ -47,7 +47,7 @@ class DayThreeTest {
 
     @Test
     fun findUniqueActual() {
-        val claimsInput = Common.getFile("year2018/day3.txt").readLines()
+        val claimsInput = Common.getFile("day3.txt").readLines()
 
         val claims = dayThree.convertImportToClaims(claimsInput)
         val totalAreaOverlap = dayThree.findNoOverlap(claims)

@@ -23,7 +23,7 @@ class DaySixTest {
 
     @Test
     fun findAreaActual() {
-        val coordsInput = Common.getFile("year2018/day6.txt").readLines()
+        val coordsInput = Common.getFile("day6.txt").readLines()
 
         val maxArea = DaySixDanger(coordsInput).calculateMaxArea()
 
@@ -48,7 +48,7 @@ class DaySixTest {
 
     @Test
     fun findSafetyActual() {
-        val coordsInput = Common.getFile("year2018/day6.txt").readLines()
+        val coordsInput = Common.getFile("day6.txt").readLines()
 
         val safeArea = DaySixSafety(coordsInput).calculateSafeRegion(10000)
 

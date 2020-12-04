@@ -17,7 +17,7 @@ class DayEightTest {
 
     @Test
     fun findMetaDataActual() {
-        val map = Common.getFile("year2018/day8.txt").readLines()[0]
+        val map = Common.getFile("day8.txt").readLines()[0]
                 .split(" ")
                 .map { it.toInt() }
         val metadata = DayEight(map).metaCheck()
@@ -37,7 +37,7 @@ class DayEightTest {
 
     @Test
     fun findNodeValueActual() {
-        val map = Common.getFile("year2018/day8.txt").readLines()[0]
+        val map = Common.getFile("day8.txt").readLines()[0]
                 .split(" ")
                 .map { it.toInt() }
         val metadata = DayEight(map).nodeValue()

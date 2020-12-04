@@ -18,7 +18,7 @@ class DayNineTest {
 
 //    @Test
 //    fun findXXX1Actual() {
-//        val map = Common.getFile("year2018/day9.txt").readLines()[0]
+//        val map = Common.getFile("day9.txt").readLines()[0]
 //                .split(" ")
 //                .map { it.toInt() }
 //        val metadata = DayNine(map).metaCheck()
@@ -38,7 +38,7 @@ class DayNineTest {
 //
 //    @Test
 //    fun findXXX2Actual() {
-//        val map = Common.getFile("year2018/day9.txt").readLines()[0]
+//        val map = Common.getFile("day9.txt").readLines()[0]
 //                .split(" ")
 //                .map { it.toInt() }
 //        val metadata = DayNine(map).nodeValue()

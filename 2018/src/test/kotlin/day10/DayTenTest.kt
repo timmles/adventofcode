@@ -48,7 +48,7 @@ class DayTenTest {
 
     @Test
     fun findMetaDataActual() {
-        val points = Common.getFile("year2018/day10.txt").readLines()
+        val points = Common.getFile("day10.txt").readLines()
 
         val message = DayTen(points, 10)
         println("Durations to find :: ${message.seconds}")
@@ -69,7 +69,7 @@ class DayTenTest {
 //
 //    @Test
 //    fun findNodeValueActual() {
-//        val map = Common.getFile("year2018/day10.txt").readLines()[0]
+//        val map = Common.getFile("day10.txt").readLines()[0]
 //                .split(" ")
 //                .map { it.toInt() }
 //        val metadata = DayTen(map).nodeValue()
