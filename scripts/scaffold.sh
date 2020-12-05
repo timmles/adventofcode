@@ -55,7 +55,7 @@ internal class Day${day}KtTest {
 
   @Test
   fun question1() {
-    val input = Common.getFile("year$year/day$day.txt").readLines()
+    val input = Common.getFile("day$day.txt").readLines()
     assertEquals(1, Placeholder(input).doWork())
   }
 
@@ -70,7 +70,7 @@ internal class Day${day}KtTest {
 
   @Test
   fun question2() {
-    val input = Common.getFile("year$year/day$day.txt").readLines()
+    val input = Common.getFile("day$day.txt").readLines()
     assertEquals(1, Placeholder(input).doWork())
   }
 }
