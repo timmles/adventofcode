@@ -15,15 +15,15 @@ function prop() {
   grep "${1}" ${file} | cut -d '=' -f2
 }
 
-kotlin_dir=$PARENT_PATH/../$year/src/main/kotlin/day$day
-tests_dir=$PARENT_PATH/../$year/src/test/kotlin/day$day
-input_dir=$PARENT_PATH/../$year/src/test/resources
+kotlin_file=$PARENT_PATH/../$year/src/main/kotlin/day$day/day$day.kt
+tests_file=$PARENT_PATH/../$year/src/test/kotlin/day$day/day${day}tests.kt
+input_file=$PARENT_PATH/../$year/src/test/resources/day$day.txt
 
-mkdir -p $kotlin_dir
-mkdir -p $tests_dir
-mkdir -p $input_dir
+mkdir -p $(dirname "$kotlin_file")
+mkdir -p $(dirname "$tests_file")
+mkdir -p $(dirname "$input_file")
 
-cat << EOF > $kotlin_dir/day$day.kt
+cat << EOF > $kotlin_file
 package year$year.day$day
 
 class Placeholder(val input: List<String>) {
@@ -35,7 +35,7 @@ class Placeholder(val input: List<String>) {
 
 EOF
 
-cat << EOF > $tests_dir/day${day}tests.kt
+cat << EOF > $tests_file
 package year$year.day$day
 
 import common.Common
@@ -78,5 +78,7 @@ internal class Day${day}KtTest {
 EOF
 
 # scaffold input
-http --body https://adventofcode.com/$year/day/$day/input "Cookie:session=$(prop advent.session)" > $input_dir/day$day.txt
+http --body https://adventofcode.com/$year/day/$day/input "Cookie:session=$(prop advent.session)" > $input_file
 
+git add $input_file $tests_file $kotlin_file
+idea $input_file $tests_file $kotlin_file
