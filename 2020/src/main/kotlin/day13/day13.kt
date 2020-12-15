@@ -10,7 +10,7 @@ class Placeholder() {
     return minBy.first * minBy.second
   }
 
-  fun part2(input: List<String>): Long {
+  fun part2_bf_intersect(input: List<String>): Long {
     var startOffset = 0L
     val batchSize = 1_000_000L
     var countOffset = 0L
@@ -34,7 +34,7 @@ class Placeholder() {
     }
   }
 
-  fun part2_bruteforce(input: List<String>, offset: Long): Long {
+  fun part2_bf_modulus(input: List<String>, offset: Long): Long {
     val input = input[1]
       .split(',')
       .mapIndexed { index, it ->
