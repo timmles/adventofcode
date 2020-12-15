@@ -33,5 +33,28 @@ class Placeholder() {
       if (reduce.isNotEmpty()) return reduce.first()
     }
   }
+
+  fun part2_bruteforce(input: List<String>, offset: Long): Long {
+    val input = input[1]
+      .split(',')
+      .mapIndexed { index, it ->
+        if (it == "x") null
+        else Pair(it.toLong(), index)
+      }.filterNotNull()
+
+    val largest = input.maxBy { it.first }!!
+
+    var departTime: Long = (offset/largest.first)*largest.first + (largest.first - largest.second.toLong())
+    outer@ while (true) {
+      for (el in input) {
+        if ((departTime + el.second) % el.first != 0L) {
+          departTime += largest.first
+          continue@outer
+        }
+      }
+      break
+    }
+    return departTime
+  }
 }
 
