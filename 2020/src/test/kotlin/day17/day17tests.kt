@@ -7,20 +7,37 @@ import kotlin.test.assertEquals
 internal class Day17KtTest {
 
   @Test
-  fun example1() {
+  fun example1_naive() {
     val input = """
       .#.
       ..#
       ###
     """.trimIndent().lines()
 
-    assertEquals(112, Placeholder(input).doWork())
+    assertEquals(112, PowerCubeNaive(input).doWork())
   }
 
   @Test
-  fun question1() {
+  fun question1_naive() {
     val input = Common.getFile("day17.txt").readLines()
-    assertEquals(301, Placeholder(input).doWork())
+    assertEquals(301, PowerCubeNaive(input).doWork())
+  }
+
+  @Test
+  fun example1_optimised() {
+    val input = """
+      .#.
+      ..#
+      ###
+    """.trimIndent().lines()
+
+    assertEquals(112, PowerCubeOptimised(input).doWork())
+  }
+
+  @Test
+  fun question1_optimised() {
+    val input = Common.getFile("day17.txt").readLines()
+    assertEquals(301, PowerCubeOptimised(input).doWork())
   }
 
   @Test

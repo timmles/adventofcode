@@ -1,6 +1,6 @@
 package year2020.day17
 
-class Placeholder(val input: List<String>) {
+class PowerCubeNaive(val input: List<String>) {
   var space2 = Array(100) { Array(100) { BooleanArray(100) { false } } }
 
   init {
@@ -72,10 +72,5 @@ class Placeholder(val input: List<String>) {
       println()
     }
   }
-
-//  val space = Array(100) { Array(100) { BooleanArray(100) { false } } }
-
-//  fun Array<Array<BooleanArray>>.copy(): Array<Array<BooleanArray>> = map { map { it.clone() }.toTypedArray()}
-//  fun Array<BooleanArray>.copy(): Array<Array<BooleanArray>> = map { it.clone().toTypedArray() }.toTypedArray()
 }
 
