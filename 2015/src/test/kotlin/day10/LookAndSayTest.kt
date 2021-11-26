@@ -1,8 +1,7 @@
 package year2015.day10
 
-import org.junit.Test
-
 import org.junit.Assert.*
+import org.junit.Test
 
 class LookAndSayTest {
 

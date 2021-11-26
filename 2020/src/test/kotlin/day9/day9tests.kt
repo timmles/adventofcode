@@ -37,7 +37,7 @@ internal class Day9KtTest {
   @Test
   fun question1() {
     val input = Common.getFile("day9.txt").readLines().map { it.toLong() }
-    assertEquals(1, XmasCracker().findFirstInvalid(25, input))
+    assertEquals(1398413738, XmasCracker().findFirstInvalid(25, input))
   }
 
   @Test
@@ -73,7 +73,6 @@ internal class Day9KtTest {
   fun question2() {
     val input = Common.getFile("day9.txt").readLines().map { it.toLong() }
     val findFirstInvalid = XmasCracker().findFirstInvalid(25, input)
-    assertEquals(62, XmasCracker().findWeakness(findFirstInvalid, input))
+    assertEquals(169521051, XmasCracker().findWeakness(findFirstInvalid, input))
   }
 }
-

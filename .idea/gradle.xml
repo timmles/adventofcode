@@ -1,20 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$USER_HOME$/eaf/software/gradle" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/2015" />
+        <option name="gradleHome" value="$USER_HOME$/eaf/software/gradle-4.7" />
+        <option name="gradleJvm" value="1.8" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/2015" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/2018" />
+        <option name="gradleHome" value="$USER_HOME$/eaf/software/gradle-4.7" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
             <option value="$PROJECT_DIR$/2018" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/2019" />
+        <option name="gradleHome" value="$USER_HOME$/eaf/software/gradle-4.7" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
             <option value="$PROJECT_DIR$/2019" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/2020" />
+        <option name="gradleHome" value="$USER_HOME$/eaf/software/gradle-4.7" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
             <option value="$PROJECT_DIR$/2020" />
-            <option value="$PROJECT_DIR$/common" />
           </set>
         </option>
       </GradleProjectSettings>

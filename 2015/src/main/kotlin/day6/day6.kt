@@ -1,6 +1,5 @@
 package year2015.day6
 
-import common.Common
 import java.util.*
 
 class LightGrid {

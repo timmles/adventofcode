@@ -20,7 +20,7 @@ internal class Day15KtTest {
   @Test
   fun question1() {
     val input = Common.getFile("day15.txt").readLines()[0]
-    assertEquals(1, MemoryGame().play(input, 2020))
+    assertEquals(620, MemoryGame().play(input, 2020))
   }
 
   @Test
@@ -40,4 +40,3 @@ internal class Day15KtTest {
     assertEquals(110871, MemoryGame().play(input, 30000000))
   }
 }
-

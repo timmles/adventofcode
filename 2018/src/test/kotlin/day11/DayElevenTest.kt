@@ -1,6 +1,5 @@
 package year2018.day11
 
-import common.Common
 import org.junit.Test
 
 class DayElevenTest {

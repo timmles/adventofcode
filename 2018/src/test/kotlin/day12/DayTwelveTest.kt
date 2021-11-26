@@ -1,7 +1,6 @@
 package year2018.day12
 
 import common.Common
-import org.junit.Ignore
 import org.junit.Test
 
 class DayTwelveTest {
@@ -44,4 +43,3 @@ class DayTwelveTest {
         kotlin.test.assertEquals(4_000_000_000_866, DayTwelve(initialState, instructions).runGenerations(50_000_000_000L))
     }
 }
-
