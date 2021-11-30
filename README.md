@@ -1,6 +1,6 @@
 ### Advent of Code
 
-This repo is my yearly attempt at the [Advent of Code](https://adventofcode.com/).
+This repo is my yearly attempt at the [Advent of Code](https://adventofcode.com/).  
 I've competed every year since it's inception and at this point its become a bit of an addiction 🤪.
 It's a pretty good opportunity to learn a new language and have some light-hearted competition against my colleagues.
 
