@@ -22,6 +22,10 @@ trim_trailing_whitespace = true
 #########################
 
 # XML Configuration Files
+[*.py]
+indent_size = 4
+
+# XML Configuration Files
 [*.{xml,config,props}]
 indent_size = 2
 
