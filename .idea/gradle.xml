@@ -22,7 +22,7 @@
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/2018" />
         <option name="gradleHome" value="$USER_HOME$/eaf/software/gradle-4.7" />
-        <option name="gradleJvm" value="1.8 (2)" />
+        <option name="gradleJvm" value="1.8" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/2018" />
