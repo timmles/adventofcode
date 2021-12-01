@@ -18,6 +18,9 @@ with open(challenge_path+f'/day{day}.py', "w") as solution_file,\
     open(f'{current_file_dir}/template/template.py') as template_file:
     solution_file.write(template_file.read())
 
+with open(challenge_path+f'/example', "w") as solution_file:
+    solution_file.writelines('')
+
 with open(challenge_path+f'/input', "w") as input_file,\
     open('.advent_secrets') as secrets_file:
     key, secret = secrets_file.readline().strip().split('=')
