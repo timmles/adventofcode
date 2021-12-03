@@ -10,31 +10,18 @@
 def pivot(lines):
     new_lines = []
     for i in range(len(lines[0])):
-        str = ''
+        pivot_line = ''
         for line in lines:
-            str += line[i]
-        new_lines.append(str)
+            pivot_line += line[i]
+        new_lines.append(pivot_line)
     return new_lines
 
 
 def solve1(lines):
-    gamma_rate = ''
-    epsilon_rate = ''
-
-    for i in range(len(lines[0])):
-        str = ''
-        for line in lines:
-            str += line[i]
-
-        if str.count('0') > str.count('1'):
-            gamma_rate += '0'
-            epsilon_rate += '1'
-        else:
-            gamma_rate += '1'
-            epsilon_rate += '0'
-        # print(gamma_rate, '   ', epsilon_rate)
-        # print(line[max(line.count('0'), line.count('1'))])
-    return int(gamma_rate, 2) * int(epsilon_rate, 2)
+    pivot_lines = pivot(lines)
+    gamma_rate = ['0' if c.count('0') >= len(c)/2 else '1' for c in pivot_lines]
+    epsilon_rate = ['1' if c.count('1') < len(c)/2 else '0' for c in pivot_lines]
+    return int(''.join(gamma_rate), 2) * int(''.join(epsilon_rate), 2)
 
 
 def solve2(lines):
