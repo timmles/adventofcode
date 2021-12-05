@@ -17,8 +17,8 @@ def solve2(lines):
     pass
 
 
-example_input = [int(x) for x in open('example').read().splitlines()]
-puzzle_input = [int(x) for x in open('input').read().splitlines()]
+example_input = open('example').read().splitlines()
+puzzle_input = open('input').read().splitlines()
 
 print('A', solve1(example_input))
 print('A', solve1(puzzle_input))
