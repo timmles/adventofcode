@@ -60,6 +60,22 @@ def solve_optimised_condensed(lines, lifecycle):
     return sum(list(fish.values()))
 
 
+def solve_shifting(lines, lifecycle):
+    fish = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    for x in lines:
+        fish[x] += 1
+
+    for i in range(lifecycle):
+        count_zeros = fish[0]
+        fish = fish[1:]
+        fish.append(0)
+        fish[6] += count_zeros
+        fish[8] = count_zeros
+
+    return sum(fish)
+
+
 example_input = open('example').read().splitlines()[0]
 example_input = example_input.split(',')
 example_input = [int(x) for x in example_input]
@@ -68,7 +84,7 @@ puzzle_input = puzzle_input.split(',')
 puzzle_input = [int(x) for x in puzzle_input]
 
 print('A', solve_naive(example_input, 80))
-print('A', solve_optimised_condensed(example_input, 80))
-print('A', solve_optimised_condensed(puzzle_input, 80))
-print('B', solve_optimised_condensed(example_input, 256))
-print('B', solve_optimised_condensed(puzzle_input, 256))
+print('A', solve_shifting(example_input, 80))
+print('A', solve_shifting(puzzle_input, 80))
+print('B', solve_shifting(example_input, 256))
+print('B', solve_shifting(puzzle_input, 256))
