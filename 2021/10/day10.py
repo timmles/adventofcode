@@ -8,34 +8,7 @@
 from collections import defaultdict, deque, namedtuple
 
 
-def solve1(lines):
-    errors = {
-        ')': 0,
-        ']': 0,
-        '}': 0,
-        '>': 0,
-    }
-    opposite = {
-        ')' : '(',
-        ']' : '[',
-        '}' : '{',
-        '>' : '<',
-    }
-    for line in lines:
-        q = deque()
-        for c in line:
-            match c:
-                case '(': q.append('(')
-                case '[': q.append('[')
-                case '{': q.append('{')
-                case '<': q.append('<')
-                case _:
-                    if q.pop() != opposite[c]:
-                        errors[c] += 1
-                        continue
-    return errors[')'] * 3 + errors[']'] * 57 + errors['}'] * 1197 + errors['>'] * 25137
-
-def solve2(lines):
+def solve(lines):
     total = []
     errors = {
         ')': 0,
@@ -44,10 +17,10 @@ def solve2(lines):
         '>': 0,
     }
     opposite = {
-        ')' : '(',
-        ']' : '[',
-        '}' : '{',
-        '>' : '<',
+        ')': '(',
+        ']': '[',
+        '}': '{',
+        '>': '<',
     }
     for line in lines:
         ok = True
@@ -62,9 +35,11 @@ def solve2(lines):
                     pop = q.pop()
                     if pop != opposite[c]:
                         ok = False
+                        errors[c] += 1
+                        continue
+
         if ok:
             autocomplete = 0
-            print(q)
             q.reverse()
             for c in q:
                 autocomplete *= 5
@@ -73,18 +48,22 @@ def solve2(lines):
                     case '[': autocomplete += 2
                     case '{': autocomplete += 3
                     case '<': autocomplete += 4
-            print(autocomplete)
             total.append(autocomplete)
 
-    total.sort()
+    a = errors[')'] * 3 + errors[']'] * 57 + errors['}'] * 1197 + errors['>'] * 25137
 
-    return total[len(total)//2]
+    total.sort()
+    b = total[len(total)//2]
+
+    return a, b
 
 
 example_input = open('example').read().splitlines()
 puzzle_input = open('input').read().splitlines()
 
-# print('A', solve1(example_input))
-# print('A', solve1(puzzle_input))
-print('B', solve2(example_input))
-print('B', solve2(puzzle_input))
+example = solve(example_input)
+puzzle = solve(puzzle_input)
+print('A', example[0])
+print('A', puzzle[0])
+print('B', example[1])
+print('B', puzzle[1])
