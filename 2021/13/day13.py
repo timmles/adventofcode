@@ -67,8 +67,10 @@ def solve2(lines):
 
 example_input = open('example').read().splitlines()
 puzzle_input = open('input').read().splitlines()
+hard_input = open('hardmode').read().splitlines()
 
 print('A', solve1(example_input))
 print('A', solve1(puzzle_input))
 print('B', solve2(example_input))
 print('B', solve2(puzzle_input)) # UEFZCUCJ
+print('B', solve2(hard_input)) # https://www.reddit.com/r/adventofcode/comments/rfeuic/2021_day_13_part_25_what_if_it_would_be_more/
