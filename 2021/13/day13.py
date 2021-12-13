@@ -10,14 +10,14 @@
 def print_board(coords):
     max_col = max([x[0] for x in coords])
     max_row = max([x[1] for x in coords])
-    dots = [['.' for i in range(max_col+1)] for i in range(max_row+1)]
+    dots = [['.' for _ in range(max_col+1)] for _ in range(max_row+1)]
     coords = set(coords)
     for coord in coords:
         col, row = coord
         dots[row][col] = '#'
 
     for dot in dots:
-        print(dot)
+        print(*dot)
 
 
 def solve1(lines):
