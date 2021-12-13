@@ -7,16 +7,9 @@
 # import re
 # from collections import defaultdict, deque, namedtuple
 
-def get_pair1(x):
-    a,b = x
-    return a
-def get_pair2(x):
-    a,b = x
-    return b
-
 def print_board(coords):
-    max_col = max([get_pair1(x) for x in coords])
-    max_row = max([get_pair2(x) for x in coords])
+    max_col = max([x[0] for x in coords])
+    max_row = max([x[1] for x in coords])
     dots = [['.' for i in range(max_col+1)] for i in range(max_row+1)]
     coords = set(coords)
     for coord in coords:
@@ -25,6 +18,7 @@ def print_board(coords):
 
     for dot in dots:
         print(dot)
+
 
 def solve1(lines):
     instructions = lines[lines.index('')+1:]
