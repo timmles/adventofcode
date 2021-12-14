@@ -5,41 +5,56 @@
 # import itertools
 # import json
 # import re
-from collections import defaultdict, deque, namedtuple
+from collections import defaultdict, deque, namedtuple, Counter
+
+# I couldn't solve today.
+# I was thinking of storing already processed values.
+# So F('NNCB', 40) == F('NN', 39) + F('NC', 39) + F('CB', 39), then decompose F('NN', 39) in the same way and store the
+# answer to F() of each value, hoping that the same F() come up in another tree. But the caching is limited because
+# F() is tied to depth as well. So F('NN', 39) is not useful for F('NN', 38). Plus it still required building up the
+# full string value which is what breaks the problem.
+#
+# I did think of storing just storing the counts, but as an optimisation to the F() solution. I did not think of it
+# independently of that solution, which is what was needed for the real solution.
+#
+# So after about 4 hours, I decided to move on and find solutions, so that I could learn.
+# - I learnt how to use Counter()
+# - the logic on line 46:49 that you can just count each character and then add 1 for the last char of the input string
+#   was pretty novel
+#
+# This is basically Jonathan Paulsons's solution, in my own code https://www.youtube.com/watch?v=7zvA-o47Uo0
 
 
-def solve1(lines):
+def solve(lines, iterations):
     template = lines[0]
     poly = dict()
     for i in lines[2:]:
         pair, insertion = i.split(' -> ')
         poly[pair] = insertion
 
-    for i in range(10):
-        insertions = defaultdict(lambda x: '')
-        for pair in zip(template[:], template[1:], range(len(template))):
-            if ''.join(pair[0:2]) in poly.keys():
-                insertions[pair[2]] = poly[''.join(pair[0:2])]
-            # for line in lines:
-            #     print(line)
+    pairs = Counter()
+    for pair in zip(template[:], template[1:]):
+        pairs[''.join(pair)] = 1
 
-        for ind, key in enumerate(insertions):
-            template = template[:key+ind+1] + insertions[key] + template[key+1+ind:]
+    for i in range(iterations):
+        new_pairs = Counter()
+        for k in pairs:
+            new_pairs[k[0]+poly[k]] += pairs[k]
+            new_pairs[poly[k]+k[1]] += pairs[k]
+        pairs = new_pairs
 
-    counts = dict.fromkeys(set(template), 0)
-    for i in counts:
-        counts[i] = template.count(i)
+    distribution = Counter()
+    for k in pairs:
+        distribution[k[0]] += pairs[k]
+    distribution[template[-1]] += 1
 
-    return max(counts.values()) - min(counts.values())
-
-def solve2(lines):
-    pass
+    return max(distribution.values()) - min(distribution.values())
 
 
 example_input = open('example').read().splitlines()
 puzzle_input = open('input').read().splitlines()
 
-print('A', solve1(example_input))
-# print('A', solve1(puzzle_input))
-# print('B', solve2(example_input))
-# print('B', solve2(puzzle_input))
+print('A', solve(example_input, 10))
+print('A', solve(puzzle_input, 10))
+print('B', solve(example_input, 40))
+print('B', solve(puzzle_input, 40))
