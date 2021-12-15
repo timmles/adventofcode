@@ -6,30 +6,20 @@
 # import json
 # import re
 # from collections import defaultdict, deque, namedtuple, Counter
+import heapq
 
 
-def solve1(orig_lines, grid):
+def solve(orig_lines, grid):
     for i in range(len(orig_lines)):
         orig_lines[i] = [int(x) for x in orig_lines[i]]
 
-    start = (0, 0)
     actual_R = len(orig_lines)
     actual_C = len(orig_lines[0])
     R = actual_R*grid
     C = actual_C*grid
     end = (R - 1, C - 1)
-    openset = [start]
-    closedset = []
-    came_from = dict()
-
-    g_score = dict()
-    f_score = dict()
-
-    def manhattan(current):
-        return (end[0] - current[0]) + (end[1] - current[1])
-
-    g_score[start] = 0
-    f_score[start] = manhattan(start)
+    openset = [(0, 0, 0)]
+    visited = [[None for _ in range(C)] for _ in range(R)]
 
     def get_lines(neighbor):
         grid_r = neighbor[0] // actual_R
@@ -42,30 +32,22 @@ def solve1(orig_lines, grid):
         return actual_value
 
     while len(openset) > 0:
-        def get_f_score(x):
-            return f_score[x]
-        current = min(openset, key=get_f_score)
+        current = heapq.heappop(openset)
+        dist, r, c = current
+        if r == end[0] and c == end[1]:
+            return dist
 
-        if current == end:
-            return g_score[current]
+        if visited[r][c] is None or dist < visited[r][c]:
+            visited[r][c] = dist
+        else:
+            continue
 
-        openset.remove(current)
-        closedset.append(current)
-
-        for neighbor in [(current[0] - 1, current[1]), (current[0], current[1] + 1), (current[0] + 1, current[1]), (current[0], current[1] - 1)]:
-            if 0 <= neighbor[0] < R and 0 <= neighbor[1] < C:
-                if neighbor in closedset:
-                    continue
-
-                tentative_g_score = g_score[current] + get_lines(neighbor)
-
-                if neighbor not in openset or tentative_g_score < g_score[neighbor]:
-                    came_from[neighbor] = current
-                    g_score[neighbor] = tentative_g_score
-                    f_score[neighbor] = tentative_g_score + manhattan(neighbor)
-                    if neighbor not in openset:
-                        openset.append(neighbor)
-
+        for neighbor in [(r - 1, c), (r, c + 1), (r + 1, c), (r, c - 1)]:
+            nr, nc = neighbor
+            if 0 <= nr < R and 0 <= nc < C:
+                tentative_g_score = dist + get_lines(neighbor)
+                heapq.heappush(openset, (tentative_g_score, neighbor[0], neighbor[1]))
+    print('fail')
 
 def solve2(lines):
     pass
@@ -74,7 +56,7 @@ def solve2(lines):
 example_input = open('example').read().splitlines()
 puzzle_input = open('input').read().splitlines()
 
-print('A', solve1(example_input,1))
-# print('A', solve1(puzzle_input,1))
-print('B', solve1(example_input, 5))
-print('B', solve1(puzzle_input, 5))
+# print('A', solve(example_input, 1))
+# print('A', solve(puzzle_input, 1))
+# print('B', solve(example_input, 5))
+print('B', solve(puzzle_input, 5))
