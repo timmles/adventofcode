@@ -53,7 +53,7 @@ def solve(orig_lines, grid):
 example_input = open('example').read().splitlines()
 puzzle_input = open('input').read().splitlines()
 
-# print('A', solve(example_input, 1))
-# print('A', solve(puzzle_input, 1))
-# print('B', solve(example_input, 5))
+print('A', solve(example_input, 1))
+print('A', solve(puzzle_input, 1))
+print('B', solve(example_input, 5))
 print('B', solve(puzzle_input, 5))
