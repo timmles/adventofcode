@@ -19,9 +19,9 @@ def solve(orig_lines, grid):
     C = actual_C*grid
     end = (R - 1, C - 1)
     openset = [(0, 0, 0)]
-    visited = [[None for _ in range(C)] for _ in range(R)]
+    visited = [[1e9 for _ in range(C)] for _ in range(R)]
 
-    def get_lines(neighbor):
+    def get_risk(neighbor):
         grid_r = neighbor[0] // actual_R
         grid_c = neighbor[1] // actual_C
         actual_r = neighbor[0] % actual_R
@@ -37,7 +37,7 @@ def solve(orig_lines, grid):
         if r == end[0] and c == end[1]:
             return dist
 
-        if visited[r][c] is None or dist < visited[r][c]:
+        if dist < visited[r][c]:
             visited[r][c] = dist
         else:
             continue
@@ -45,12 +45,9 @@ def solve(orig_lines, grid):
         for neighbor in [(r - 1, c), (r, c + 1), (r + 1, c), (r, c - 1)]:
             nr, nc = neighbor
             if 0 <= nr < R and 0 <= nc < C:
-                tentative_g_score = dist + get_lines(neighbor)
-                heapq.heappush(openset, (tentative_g_score, neighbor[0], neighbor[1]))
+                tentative_g_score = dist + get_risk(neighbor)
+                heapq.heappush(openset, (tentative_g_score, *neighbor))
     print('fail')
-
-def solve2(lines):
-    pass
 
 
 example_input = open('example').read().splitlines()
