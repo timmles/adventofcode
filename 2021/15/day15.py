@@ -31,7 +31,7 @@ def solve(orig_lines, grid):
             actual_value = actual_value % 9
         return actual_value
 
-    while len(openset) > 0:
+    while openset:
         current = heapq.heappop(openset)
         dist, r, c = current
         if r == end[0] and c == end[1]:
