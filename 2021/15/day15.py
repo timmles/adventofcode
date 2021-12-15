@@ -8,13 +8,15 @@
 # from collections import defaultdict, deque, namedtuple, Counter
 
 
-def solve1(lines):
-    for i in range(len(lines)):
-        lines[i] = [int(x) for x in lines[i]]
+def solve1(orig_lines, grid):
+    for i in range(len(orig_lines)):
+        orig_lines[i] = [int(x) for x in orig_lines[i]]
 
     start = (0, 0)
-    R = len(lines)
-    C = len(lines[0])
+    actual_R = len(orig_lines)
+    actual_C = len(orig_lines[0])
+    R = actual_R*grid
+    C = actual_C*grid
     end = (R - 1, C - 1)
     openset = [start]
     closedset = []
@@ -28,6 +30,16 @@ def solve1(lines):
 
     g_score[start] = 0
     f_score[start] = manhattan(start)
+
+    def get_lines(neighbor):
+        grid_r = neighbor[0] // actual_R
+        grid_c = neighbor[1] // actual_C
+        actual_r = neighbor[0] % actual_R
+        actual_c = neighbor[1] % actual_C
+        actual_value = orig_lines[actual_r][actual_c] + grid_r + grid_c
+        if actual_value > 9:
+            actual_value = actual_value % 9
+        return actual_value
 
     while len(openset) > 0:
         def get_f_score(x):
@@ -45,7 +57,7 @@ def solve1(lines):
                 if neighbor in closedset:
                     continue
 
-                tentative_g_score = g_score[current] + lines[neighbor[0]][neighbor[1]]
+                tentative_g_score = g_score[current] + get_lines(neighbor)
 
                 if neighbor not in openset or tentative_g_score < g_score[neighbor]:
                     came_from[neighbor] = current
@@ -62,7 +74,7 @@ def solve2(lines):
 example_input = open('example').read().splitlines()
 puzzle_input = open('input').read().splitlines()
 
-print('A', solve1(example_input))
-print('A', solve1(puzzle_input))
-# print('B', solve2(example_input))
-# print('B', solve2(puzzle_input))
+print('A', solve1(example_input,1))
+# print('A', solve1(puzzle_input,1))
+print('B', solve1(example_input, 5))
+print('B', solve1(puzzle_input, 5))
