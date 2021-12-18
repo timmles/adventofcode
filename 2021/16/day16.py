@@ -7,95 +7,85 @@
 # import re
 # import heapq
 # from collections import defaultdict, deque, namedtuple, Counter
+import math
 
-
-def bit_extracted(number, k, p):
-    return ((1 << k) - 1) & (number >> p)
-
-
-def bit_extracted_msb(number, k, p):
-    return ((1 << k) - 1) & (number >> int.bit_length(number) - k - p)
-
-
-def bit_split(number, k):
-    return ((1 << int.bit_length(number) - k) - 1) & number
-
-
-def literal(transmission, cursor):
-    value = 0
+def literal(message):
+    value = ''
     while True:
-        cont = bit_extracted_msb(transmission, 1, cursor)
-        segment = bit_extracted_msb(transmission, 4, cursor + 1)
-        value = value << 4
+        cont = message[0:1]
+        segment = message[1:5]
+        message = message[5:]
         value += segment
 
-        cursor += 5
-        if cont == 0:
+        if cont == '0':
             break
-    return value, cursor
+    return int(value, 2), message
 
-
-def process(transmission, cursor):
-    # if bit_split(transmission, cursor) == 0:
-    #     return [], cursor+1
-
-    # if cursor > int.bit_length(transmission) - 40:
-    #     print('😭')
+def process(transmission):
     packets = []
-    version = bit_extracted_msb(transmission, 3, cursor)
-    type = bit_extracted_msb(transmission, 3, cursor + 3)
-    message_cursor = cursor + 6
-    packet_end_cursor = 0
-
-
+    version = int(transmission[0:3], 2)
+    type = int(transmission[3:6], 2)
+    message = transmission[6:]
+    packet_remainder = ''
     # literal
     if type == 4:
-        value, packet_end_cursor = literal(transmission, message_cursor)
-        packets.append({
-            'version': version,
-            'type': type,
-            'message': value
-        })
+        value, literal_remainder = literal(message)
+        packets.append(value)
+        packet_remainder = literal_remainder
     # operator
     else:
-        packets.append({
-            'version': version,
-            'type': type
-        })
-        length_type_id = bit_extracted_msb(transmission, 1, message_cursor)
-        if length_type_id == 0:
-            len_sub_packets = bit_extracted_msb(transmission, 15, message_cursor+1)
-            sub_packets_cursor = message_cursor+1+15
-            packet_end_cursor = message_cursor+1+15+len_sub_packets
-            while sub_packets_cursor < message_cursor+1+15+len_sub_packets:
-                sub_packet, sub_packets_cursor = process(transmission, sub_packets_cursor)
-                # sub_packets = sub_packet_remainder
-                packets += sub_packet
-        elif length_type_id == 1:
-            num_sub_packets = bit_extracted_msb(transmission, 11, message_cursor+1)
-            sub_packets_cursor = message_cursor+1+11
+        length_type_id = message[0:1]
+        if length_type_id == '0':
+            len_sub_packets = int(message[1:16], 2)
+            sub_packets = message[16:16+len_sub_packets]
+            packet_remainder = message[16+len_sub_packets:]
+            while sub_packets != '':
+                sub_packet, sub_packet_remainder = process(sub_packets)
+                sub_packets = sub_packet_remainder
+                packets.append(sub_packet)
+        elif length_type_id == '1':
+            num_sub_packets = int(message[1:12], 2)
+            sub_packets = message[12:]
             for i in range(num_sub_packets):
-                sub_packet, sub_packets_cursor = process(transmission, sub_packets_cursor)
-                packets += sub_packet
-            packet_end_cursor = sub_packets_cursor # cursor + messages
+                sub_packet, sub_packet_remainder = process(sub_packets)
+                sub_packets = sub_packet_remainder
+                packets.append(sub_packet)
+            packet_remainder = sub_packet_remainder
         else:
             print('corrupt')
-    return packets, packet_end_cursor
 
+    if type == 4:
+        return packets[0], packet_remainder
+    elif type == 0:
+        return sum(packets), packet_remainder
+    elif type == 1:
+        return math.prod(packets), packet_remainder
+    elif type == 2:
+        return min(packets), packet_remainder
+    elif type == 3:
+        return max(packets), packet_remainder
+    elif type == 5:
+        return (1 if packets[0] > packets[1] else 0), packet_remainder
+    elif type == 6:
+        return (1 if packets[0] < packets[1] else 0), packet_remainder
+    elif type == 7:
+        return (1 if packets[0] == packets[1] else 0), packet_remainder
 
-def solve1(line):
-    transmission = '1'
+    assert False
+
+def solve(line):
+    transmission = ''
     for l in line:
         transmission += bin(int(l, 16))[2:].zfill(4)
 
-    packets, remainer = process(int(transmission, 2), 1)
-    return sum([x['version'] for x in packets])
+    packets, remainer = process(transmission)
+    return packets
 
 
 def solve2(lines):
     pass
 
-example_input = open('example').read().splitlines()
+example_input = open('example').read().strip()
 puzzle_input = open('input').read().strip()
 
 # assert 6  == solve1('D2FE28')
@@ -104,7 +94,11 @@ puzzle_input = open('input').read().strip()
 # assert 16 == solve1('8A004A801A8002F478')
 # assert 12 == solve1('620080001611562C8802118E34')
 # assert 23 == solve1('C0015000016115A2E0802F182340')
-# assert 31 == solve1('A0016C880162017C3686B18A3D4780')
-assert 883 == solve1(puzzle_input)
+print(solve('C200B40A82'))
+print(solve('04005AC33890'))
+print(solve('880086C3E88112'))
+print(solve('CE00C43D881120'))
+print(solve('D8005AC2A8F0'))
+print('A', solve(puzzle_input))
 # print('B', solve2(example_input))
 # print('B', solve2(puzzle_input))
