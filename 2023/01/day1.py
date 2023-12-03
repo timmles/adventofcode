@@ -44,17 +44,6 @@ def translate(digit):
 def solve2(lines):
     linesum = 0
     for line in lines:
-        # line = line.replace("one", "1")
-        # line = line.replace("two", "2")
-        # line = line.replace("three", "3")
-        # line = line.replace("four", "4")
-        # line = line.replace("five", "5")
-        # line = line.replace("six", "6")
-        # line = line.replace("seven", "7")
-        # line = line.replace("eight", "8")
-        # line = line.replace("nine", "9")
-        # print(line)
-
         number_re = "one|two|three|four|five|six|seven|eight|nine"
         digit1 = re.search(r"\d|"+number_re, line)
         digit2 = re.search(r"\d|"+number_re[::-1], line[::-1])
@@ -62,19 +51,6 @@ def solve2(lines):
         digit1 = translate(digit1.group())
         digit2 = translate(digit2.group()[::-1])
 
-        print(digit1)
-        print(digit2)
-
-        # line = line.replace("one", "1")
-        # line = line.replace("two", "2")
-        # line = line.replace("three", "3")
-        # line = line.replace("four", "4")
-        # line = line.replace("five", "5")
-        # line = line.replace("six", "6")
-        # line = line.replace("seven", "7")
-        # line = line.replace("eight", "8")
-        # line = line.replace("nine", "9")
-        print(digit1+digit2)
         linesum += int(digit1+digit2)
     return linesum
 
@@ -83,7 +59,7 @@ example1_input = open('example1').read().splitlines()
 example2_input = open('example2').read().splitlines()
 puzzle_input = open('input').read().splitlines()
 
-# print('A', solve1(example1_input))
-# print('A', solve1(puzzle_input))
+print('A', solve1(example1_input))
+print('A', solve1(puzzle_input))
 print('B', solve2(example2_input))
 print('B', solve2(puzzle_input))
