@@ -22,8 +22,12 @@ max_line_length = 120
 # File Extension Settings
 #########################
 
-# XML Configuration Files
+# Python Files
 [*.py]
+indent_size = 4
+
+# Ruby Files
+[*.rb]
 indent_size = 4
 
 # XML Configuration Files
